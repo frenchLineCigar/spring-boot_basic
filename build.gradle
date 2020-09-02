@@ -13,15 +13,17 @@ repositories {
 }
 
 /* spring-boot-devtools : java -jar로 실행될 때는 운영 시스템으로 간주하고 devtools가 비활성화 된다.*/
-configurations {
-	developmentOnly
-	runtimeClasspath {
-		extendsFrom developmentOnly
-	}
-}
+//configurations {
+//	developmentOnly
+//	runtimeClasspath {
+//		extendsFrom developmentOnly
+//	}
+//}
 
 dependencies { /* libraries */
-	developmentOnly("org.springframework.boot:spring-boot-devtools") /* spring-dev-tools */
+//	developmentOnly("org.springframework.boot:spring-boot-devtools") /* spring-dev-tools */
+//	runtimeOnly 'org.springframework.boot:spring-boot-devtools' /* spring-dev-tools (참고: https://hagome.tistory.com/21 ) */
+	compile("org.springframework.boot:spring-boot-devtools") /* spring-dev-tools ( 참고: https://haviyj.tistory.com/11 ) */
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' /* thymeleaf template engine(View) */
 	implementation 'org.springframework.boot:spring-boot-starter-web' /* spring web project */
 	testImplementation('org.springframework.boot:spring-boot-starter-test') { /* junit5 (default) */
