@@ -1,0 +1,25 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.3.RELEASE' /* starter 생성 시 spring-boot version */
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'hello'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11' /* java version */
+
+repositories {
+	mavenCentral() /* repo url */
+}
+
+dependencies { /* libraries */
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' /* thymeleaf template engine */
+	implementation 'org.springframework.boot:spring-boot-starter-web' /* spring web project */
+	testImplementation('org.springframework.boot:spring-boot-starter-test') { /* junit5 (default) */
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
