@@ -16,7 +16,6 @@ import java.util.Optional;
  */
 
 /* 메모리 구현체 */
-@Repository /* 회원 리포지토리 스프링 빈 등록 */
 public class MemoryMemberRepository implements MemberRepository { //메모리에 저장
 
     private static final Map<Long, Member> store = new HashMap<>(); //실무에서는 `동시성 문제`가 있을 수 있어서 `공유되는 변수` 일 때는 ConcurrentHashMap을 써야되는데, 예제이므로 단순하게 HashMap을 사용
