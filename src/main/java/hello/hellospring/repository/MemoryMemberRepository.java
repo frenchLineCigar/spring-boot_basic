@@ -1,6 +1,7 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,9 +15,9 @@ import java.util.Optional;
  * Github : http://github.com/frenchLineCigar
  */
 
-/* 구현체 만들기 */
+/* 메모리 구현체 */
+@Repository /* 회원 리포지토리 스프링 빈 등록 */
 public class MemoryMemberRepository implements MemberRepository { //메모리에 저장
-
 
     private static final Map<Long, Member> store = new HashMap<>(); //실무에서는 `동시성 문제`가 있을 수 있어서 `공유되는 변수` 일 때는 ConcurrentHashMap을 써야되는데, 예제이므로 단순하게 HashMap을 사용
     private static long sequence = 0L; // map의 키값을 생성해주는 시퀀스, 실무에서는 AtomicLong 타입을 사용해 동시성 문제를 고려

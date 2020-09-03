@@ -2,7 +2,7 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
-import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,8 +14,10 @@ import java.util.Optional;
  */
 
 /* 회원 도메인의 비즈니스 로직을 작성하는 계층 */
+@Service /* 회원 서비스 스프링 빈 등록 */
 public class MemberService {
 
+    /* 회원 서비스에 의존관계 추가 */
     private final MemberRepository memberRepository;
 
     public MemberService(MemberRepository memberRepository) { //DI

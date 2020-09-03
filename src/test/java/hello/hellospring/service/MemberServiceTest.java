@@ -6,7 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
@@ -63,6 +63,7 @@ class MemberServiceTest {
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member2));
         //IllegalStateException e = assertThrows(NullPointerException.class, () -> memberService.join(member2));
 
+        //then
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
         //assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다22.");
 
@@ -77,8 +78,6 @@ class MemberServiceTest {
             //assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.123123");
         }
 */
-
-        //then
 
     }
 
