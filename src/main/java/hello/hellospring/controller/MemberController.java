@@ -39,4 +39,24 @@ public class MemberController {
 //        this.memberService = memberService;
 //    }
 
+    /* 회원 등록 폼 컨트롤러 */
+    @GetMapping("/members/new")
+    public String createForm() {
+        return "members/createMemberForm";
+    }
+
+    /* 회원 컨트롤러에서 회원을 실제 등록하는 기능 */
+    @PostMapping("/members/new")
+    public String create(MemberForm form) {
+        Member member = new Member();
+        member.setName(form.getName());
+
+        System.out.println("member = " + member.getName());
+
+        memberService.join(member);
+
+        return "redirect:/"; //등록후 홈화면으로 리다이렉트
+        //return "redirect:/members";
+    }
+
 }
