@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<!-- Thymeleaf Template Engine Tutorial : https://www.thymeleaf.org/documentation.html -->
+<html xmlns:th="http://www.thymeleaf.org"> <!-- th : thymeleaf 의 약자 -->
+<body>
+<!--회원 리스트 HTML-->
+<div class="container">
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>이름</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- thymeleaf의 loop문 : 마치 java의 forEach문법과 비슷하다 -->
+            <tr th:each="member : ${members}"> <!-- members 객체의 첫번째 요소를 꺼내서 member에 담고 id와 name을 출력 -->
+                <td th:text="${member.id}"></td> <!-- 자바빈 프로퍼티라는 방식(getter/setter 접근 방식)으로 객체에 접근 -> getId()로 값을 출력 -->
+                <td th:text="${member.name}"></td> <!-- getName()으로 꺼내서 값을 출력 -->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>

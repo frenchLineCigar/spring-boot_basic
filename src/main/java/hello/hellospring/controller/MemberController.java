@@ -39,13 +39,13 @@ public class MemberController {
 //        this.memberService = memberService;
 //    }
 
-    /* 회원 등록 폼 컨트롤러 */
+    /* 회원 등록 폼 */
     @GetMapping("/members/new")
     public String createForm() {
         return "members/createMemberForm";
     }
 
-    /* 회원 컨트롤러에서 회원을 실제 등록하는 기능 */
+    /* 회원을 실제 등록하는 기능 */
     @PostMapping("/members/new")
     public String create(MemberForm form) {
         Member member = new Member();
@@ -57,6 +57,14 @@ public class MemberController {
 
         return "redirect:/"; //등록후 홈화면으로 리다이렉트
         //return "redirect:/members";
+    }
+
+    /* 회원 조회 기능 */
+    @GetMapping("/members")
+    public String list(Model model) {
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members); //members를 model에 담아서 화면에 넘김
+        return "members/memberList";
     }
 
 }
