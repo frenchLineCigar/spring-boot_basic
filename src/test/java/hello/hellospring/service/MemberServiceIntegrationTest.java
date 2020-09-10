@@ -31,7 +31,7 @@ class MemberServiceIntegrationTest {
     MemberRepository memberRepository;
 
     @Test
-        //@Commit /*이런 옵션을 주면 @Transactional 있어도, 테스트 수행 후 Roll back 되지 않고 그냥 Commit 됨*/
+    //@Commit /*이런 옵션을 주면 @Transactional 있어도, 테스트 수행 후 Roll back 되지 않고 그냥 Commit 됨*/
     void 회원가입() {
         //given
         Member member = new Member();
