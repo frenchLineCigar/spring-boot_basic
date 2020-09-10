@@ -21,8 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 
 @SpringBootTest // 스프링 컨테이너와 테스트를 함께 실행한다
-@Transactional
-        // 각 테스트는 독립적이며 반복이 가능해야 함 -> 테스트 케이스에 이 애노테이션이 있으면, 테스트 시작 전에 트랜잭션을 시작하고, 테스트 완료 후에 항상 롤백한다 : 이렇게 해야 다음 테스트에 영향 주지 X
+@Transactional // 각 테스트는 독립적이며 반복이 가능해야 함 -> 테스트 케이스에 이 애노테이션이 있으면, 테스트 시작 전에 트랜잭션을 시작하고, 테스트 완료 후에 항상 롤백한다 : 이렇게 해야 다음 테스트에 영향 주지 X
 class MemberServiceIntegrationTest {
 
     //Test할 때는 필요한 것만 인젝션해서 쓰면 끝이므로, Field 기반으로 Autowired 받는 DI가 편하다
