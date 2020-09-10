@@ -25,10 +25,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class MemberServiceIntegrationTest {
 
     //Test할 때는 필요한 것만 인젝션해서 쓰면 끝이므로, Field 기반으로 Autowired 받는 DI가 편하다
-    @Autowired
-    MemberService memberService;
-    @Autowired
-    MemberRepository memberRepository;
+    @Autowired MemberService memberService;
+    @Autowired MemberRepository memberRepository;
 
     @Test
     //@Commit /*이런 옵션을 주면 @Transactional 있어도, 테스트 수행 후 Roll back 되지 않고 그냥 Commit 됨*/
