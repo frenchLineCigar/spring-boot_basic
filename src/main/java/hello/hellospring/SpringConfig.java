@@ -1,6 +1,7 @@
 package hello.hellospring;
 
 import hello.hellospring.repository.JdbcMemberRepository;
+import hello.hellospring.repository.JdbcTemplateMemberRepository;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import hello.hellospring.service.MemberService;
@@ -42,7 +43,8 @@ public class SpringConfig { //스프링 설정 (스프링 컨테이너에 올리
     @Bean
     public MemberRepository memberRepository() { //인터페이스 확장
 //        return new MemoryMemberRepository();
-        return new JdbcMemberRepository(dataSource); //구현체 바꿔치기
+//        return new JdbcMemberRepository(dataSource); //순수 Jdbc
+        return new JdbcTemplateMemberRepository(dataSource); //스프링 JdbcTemplate
     }
     /**
      * 스프링의 DI (Dependencies Injection)을 사용하면 기존 코드를 전혀 손대지 않고, 설정만으로 구현 클래스를 변경할 수 있다.
