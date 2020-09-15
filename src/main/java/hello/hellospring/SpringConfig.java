@@ -2,6 +2,7 @@ package hello.hellospring;
 
 import hello.hellospring.repository.JdbcMemberRepository;
 import hello.hellospring.repository.JdbcTemplateMemberRepository;
+import hello.hellospring.repository.JpaMemberRepository;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import hello.hellospring.service.MemberService;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 /**
@@ -26,12 +28,13 @@ public class SpringConfig { //스프링 설정 (스프링 컨테이너에 올리
     그리고 정형화 되지 않거나, 상황에 따라 구현 클래스를 변경해야 하면 설정을 통해 스프링 빈으로 등록한다.
     */
 
-    /* DataSource 주입 : 데이터베이스 커넥션을 획득할 때 사용하는 객체. */
-    private final DataSource dataSource; //스프링 부트는 데이터베이스 커넥션 정보(application.properties 내 DB 설정)를 바탕으로 DataSource를 생성하고 스프링 빈으로 만들어둔다. 그래서 DI를 받을 수 있다
+    /* JPA EntityManager 주입 */
+    //@PersistenceContext //원래 스펙에서는 이 애노테이션을 사용해 주입받아야 하지만 스프링에서는 없어도 DI해줌
+    private final EntityManager em;
 
     @Autowired
-    public SpringConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public SpringConfig(EntityManager em) {
+        this.em = em;
     }
 
     /* 스프링 애플리케이션이 구동될 때, @Bean이 있는 객체들을 스프링 빈으로 등록해서 컨테이너에 등록해 둠 */
@@ -44,7 +47,8 @@ public class SpringConfig { //스프링 설정 (스프링 컨테이너에 올리
     public MemberRepository memberRepository() { //인터페이스 확장
 //        return new MemoryMemberRepository();
 //        return new JdbcMemberRepository(dataSource); //순수 Jdbc
-        return new JdbcTemplateMemberRepository(dataSource); //스프링 JdbcTemplate
+//        return new JdbcTemplateMemberRepository(dataSource); //스프링 JdbcTemplate
+        return new JpaMemberRepository(em); //JPA
     }
     /**
      * 스프링의 DI (Dependencies Injection)을 사용하면 기존 코드를 전혀 손대지 않고, 설정만으로 구현 클래스를 변경할 수 있다.

@@ -6,6 +6,11 @@ package hello.hellospring.domain;
  * Github : http://github.com/frenchLineCigar
  */
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * 비즈니스 요구사항
  * > 데이터: 회원ID(식별자), 이름
@@ -13,8 +18,10 @@ package hello.hellospring.domain;
  */
 
 /* 회원 도메인 객체 */
+@Entity
 public class Member {
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; //ID 식별자 -> 고객이 정하는 값이 아닌, 데이터 구분을 위해서 시스템이 저장하는 값
     private String name; //이름
 
