@@ -27,6 +27,10 @@ public class MemberController {
     @Autowired
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
+
+        /* AOP 적용 후, 실제 Proxy가 주입되는지 콘솔에 출력해서 확인 */
+        System.out.println("memberService = " + memberService.getClass());
+
     }
 
 //    /* 필드 주입 방식 DI */
