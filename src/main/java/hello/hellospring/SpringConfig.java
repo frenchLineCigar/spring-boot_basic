@@ -28,28 +28,27 @@ public class SpringConfig { //스프링 설정 (스프링 컨테이너에 올리
     그리고 정형화 되지 않거나, 상황에 따라 구현 클래스를 변경해야 하면 설정을 통해 스프링 빈으로 등록한다.
     */
 
-    /* JPA EntityManager 주입 */
-    //@PersistenceContext //원래 스펙에서는 이 애노테이션을 사용해 주입받아야 하지만 스프링에서는 없어도 DI해줌
-    private final EntityManager em;
+    /* Spring Data JPA */
+    private final MemberRepository memberRepository;
 
     @Autowired
-    public SpringConfig(EntityManager em) {
-        this.em = em;
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     /* 스프링 애플리케이션이 구동될 때, @Bean이 있는 객체들을 스프링 빈으로 등록해서 컨테이너에 등록해 둠 */
     @Bean
     public MemberService memberService() {
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository); //의존관계 셋팅
     }
 
-    @Bean
-    public MemberRepository memberRepository() { //인터페이스 확장
+//    @Bean
+//    public MemberRepository memberRepository() { //인터페이스 확장
 //        return new MemoryMemberRepository();
 //        return new JdbcMemberRepository(dataSource); //순수 Jdbc
 //        return new JdbcTemplateMemberRepository(dataSource); //스프링 JdbcTemplate
-        return new JpaMemberRepository(em); //JPA
-    }
+//        return new JpaMemberRepository(em); //JPA
+//    }
     /**
      * 스프링의 DI (Dependencies Injection)을 사용하면 기존 코드를 전혀 손대지 않고, 설정만으로 구현 클래스를 변경할 수 있다.
      * -> 이런 대목이 Spring Bean 관리로 설계 시 장점
